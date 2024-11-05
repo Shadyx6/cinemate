@@ -25,10 +25,10 @@ function NavBar() {
 
   return (
     <>
-        <div className="wrapper h-2/3 w-full p-2 z-50 absolute">
+        <div className="wrapper h-2/3 w-full p-2 z-40 absolute">
             <div className="top h-full w-full mt-4 relative">
                 <div className="w-[50%] bg-[#D1D1D1] ml-32 relative rounded-full flex items-center ">
-                <input value={key} onChange={(e) => setKey(e.target.value)} placeholder='Search for your favorites....' className=' ml-6 bg-[#D1D1D1]  border-none w-full rounded-full p-4 focus:outline-none ' type="text" />
+                <input value={key} onChange={(e) => setKey(e.target.value)} placeholder='Search for your favorites....' className=' ml-6 bg-[#D1D1D1]  border-none w-full rounded-full py-3 px-4 focus:outline-none ' type="text" />
                 <IoIosSearch className='absolute top-1/2 left-4 -translate-x-1/2 -translate-y-1/2 text-gray-600' size={"19px"} />
                 {key?.length > 0 && (<RxCross2 onClick={() => setKey("")} className='absolute right-3 text-xl' />)}
                 </div>

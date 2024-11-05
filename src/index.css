@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+  
 ::-webkit-scrollbar{
     width: 8px;
     height: 1px;
@@ -12,4 +13,13 @@
     width: 5px;
     color: red;
     background-color: #00F5D4;
-}
+}   
+
+.swiper-pagination-bullet {
+    background-color: gray; 
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #00F5D4; 
+  }
+  
