@@ -4,10 +4,11 @@ import { MdOutlineHomeMax } from "react-icons/md";
 import { LiaQuestionSolid } from "react-icons/lia";
 function SideBar() {
     const links = [
-      {name: "Home", icon: <MdOutlineHomeMax />},
-      {name: "Latest", icon: <MdOutlineHomeMax />},
+      {name: "Trending", icon: <MdOutlineHomeMax />},
+      {name: "Popular", icon: <MdOutlineHomeMax />},
+      {name: "Movies", icon: <MdOutlineHomeMax />},
       {name: "TV Shows", icon: <MdOutlineHomeMax />},
-      {name: "Recently Added", icon: <MdOutlineHomeMax />},
+      {name: "People", icon: <MdOutlineHomeMax />},
     ]
   return (
     <div className="side relative w-[25%] bg-[#17181C] text-[#D1D1D1] p-10 justify-center">
@@ -16,7 +17,7 @@ function SideBar() {
             <h1 className='text-3xl mt-6'>Menu</h1>
             <hr style={{boxShadow: "0px 0px 10px 1px green"}} className="border-t-2  border-[#00F5D4] mt-2 mb-2" />
             {links.map((link, index) => 
-                <Link   key={index} className='mt-12 flex items-center text-xl gap-5'>
+                <Link to={`${index === 3 ? 'tv-shows' : link.name.toLowerCase() }`}  key={index} className='mt-12 flex items-center text-xl gap-5'>
                   {link.icon}
                   {link.name}
                 </Link>

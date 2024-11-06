@@ -49,9 +49,9 @@ function Home() {
     <div className="h-screen w-full flex">
       <SideBar />
       <div className="w-[75%] h-full bg-black relative flex flex-col justify-between">
-        <NavBar />
+        <NavBar className="wrapper h-2/3 w-full p-2 z-50 absolute" />
         <HeroImage wallpaper={wallpaper} />
-        {trendy && <div className=' gap-2 py-4 flex-flex-col overflow-hidden pointer-events-auto h-[45%] z-50'>
+        {trendy && <div className='gap-2 py-4 flex-flex-col overflow-hidden pointer-events-auto h-[45%] z-50'>
        <div className="flex justify-between w-full px-6">
        <h1 className="text-[#D1D1D1] mb-4">Trending</h1>
        <Dropdown title={"Filter"} options={["tv", "movie", "all"]} cats={(e) => setCategory(e.target.value)} />
@@ -60,14 +60,14 @@ function Home() {
     modules={[Virtual, Navigation, Pagination]}
     pagination={{ clickable: true, el: '.swiper-pagination' }} 
     navigation
-    className="px-[50px] h-56 w-full select-none"
+    className="px-[50px] z-40 h-56 w-full select-none"
     spaceBetween={50}
     slidesPerView={5}
     virtual
   >
     {trendy[0].map((slideContent, index) => (
       <SwiperSlide
-        className="h-56 w-40 bg-white text-black rounded-2xl overflow-hidden"
+        className="h-56  w-40 bg-white text-black rounded-2xl overflow-hidden"
         key={slideContent}
         virtualIndex={index}
       >

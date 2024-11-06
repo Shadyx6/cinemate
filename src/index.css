@@ -23,3 +23,6 @@
     background-color: #00F5D4; 
   }
   
+.wrapper{
+  z-index: 999999999999 !important;
+}
