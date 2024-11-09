@@ -67,7 +67,7 @@ function People() {
         loader={<h4>Loading...</h4>}
       >
         <div className="text-white bg-black h-full w-full">
-          <Cards data={people} title={category} />
+          <Cards data={people} title={'people'} />
         </div>
       </InfiniteScroll>
     </div>

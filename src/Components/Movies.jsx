@@ -72,7 +72,7 @@ function Movies() {
         loader={<h4>Loading...</h4>}
       >
         <div className="text-white bg-black h-full w-full">
-          <Cards data={movies} title={category} />
+          <Cards data={movies} title={'movie'} />
         </div>
       </InfiniteScroll>
     </div>

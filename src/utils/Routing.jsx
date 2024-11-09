@@ -6,6 +6,9 @@ import Popular from '../Components/Popular'
 import Movies from '../Components/Movies'
 import TvSeries from '../Components/TvShows'
 import People from '../Components/People'
+import MovieDetails from '../Components/MovieDetails'
+import TvShowDetails from '../Components/TvShowDetails'
+import PeopleDetail from '../Components/PeopleDetail'
 
 function Routing() {
   return (
@@ -14,8 +17,11 @@ function Routing() {
         <Route path='/trending' element={<Trending />} />
         <Route path='/popular' element={<Popular />} />
         <Route path='/movies' element={<Movies />} />
+        <Route path='/movie/details/:id' element={<MovieDetails />} />
         <Route path='/tv-shows' element={<TvSeries />} />
+        <Route path='/tv/details/:id' element={<TvShowDetails />} />
         <Route path='/people' element={<People />} />
+        <Route path='/people/details/:id' element={<PeopleDetail />} />
     </Routes>
   )
 }

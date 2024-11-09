@@ -2,10 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function HeroImage({wallpaper}) {
-  // const str = "movie"
-  // const mod = str.charAt(0)
-  // // const mod = str.split("").charAt(0).toUpperCase()
-  // console.log(mod)
   console.log(wallpaper)
   return (
     <div
@@ -19,7 +15,7 @@ function HeroImage({wallpaper}) {
   >
     <div className="w-full mt-auto flex gap-4">
         <div className=" h-56 w-40 rounded-lg overflow-hidden shadow-lg">
-        <img className='h-full w-full object-cover ' src={`https://image.tmdb.org/t/p/original/${wallpaper.poster_path}`} alt={wallpaper.title || wallpaper.original_name } />
+        <img className='h-full w-full object-cover ' src={`https://image.tmdb.org/t/p/original/${wallpaper.poster_path}`} alt={wallpaper.title || wallpaper.original_name} />
         </div>
         <div className="text-[#D1D1D1] flex flex-col gap-6 items-start">
             <h1 className='text-4xl font-bold'>{ wallpaper.title || wallpaper.original_name}</h1>

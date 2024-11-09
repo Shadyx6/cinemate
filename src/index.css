@@ -26,3 +26,8 @@
 .wrapper{
   z-index: 999999999999 !important;
 }
+
+.select{
+  background: linear-gradient(to left, black 20%, rgba(0, 0, 0, 0.7) 20%);
+
+}
