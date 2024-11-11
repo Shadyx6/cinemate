@@ -4,7 +4,7 @@ const initialState = {
     details: null
 }
 
-const tvShowSlice = createSlice({
+const peopleSlice = createSlice({
     name: "movie",
     initialState,
     reducers: {
@@ -18,6 +18,6 @@ const tvShowSlice = createSlice({
     }
 })
 
-export const { getPeople, removePeople } = tvShowSlice.actions;
+export const { getPeople, removePeople } = peopleSlice.actions;
 
-export default tvShowSlice.reducer
+export default peopleSlice.reducer

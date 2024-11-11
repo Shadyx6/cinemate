@@ -5,7 +5,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import NoImage from "../assets/noImage.png";
-import { SiWikipedia } from "react-icons/si";
 import {Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Virtual } from "swiper/modules";
 import "swiper/css";
