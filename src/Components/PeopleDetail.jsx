@@ -28,7 +28,6 @@ function PeopleDetail() {
       const dateObj = new Date(data ? data.details.birthday : null);
       const options = { day: "numeric", month: "long", year: "numeric" };
       const finalDate = dateObj.toLocaleDateString("en-GB", options);
-      console.log(finalDate);
   
 
   const toggleDetails = () => {
@@ -55,7 +54,7 @@ function PeopleDetail() {
                     data.taggedImages[Math.floor(Math.random() * 20)]?.media
                       .backdrop_path
                   })`
-                : ` url(https://image.tmdb.org/t/p/original/${data.taggedImages[4].file_path})`
+                : ` url(https://image.tmdb.org/t/p/original/${data.details.profile_path})`
               : `url(${NoImage})`,
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
@@ -148,9 +147,9 @@ function PeopleDetail() {
                     <div className="flex gap-4 text-gray-200 mt-2 text-sm">
                       <h3 className="">
                         {" "}
-                        <strong>Born</strong> {finalDate}
+                        <strong>Born</strong> {data.details.birthday == null ? "no info" : finalDate}
                       </h3>
-                      <h3 className="flex items-center"> <GrLocationPin />{data.details.place_of_birth}</h3>
+                      <h3 className="flex items-center"> <GrLocationPin />{data.details.place_of_birth == null ? "no info" : data.details.place_of_birth}</h3>
                     </div>
                   </div>
                 }
@@ -177,7 +176,7 @@ function PeopleDetail() {
                 <div className="mt-3">
                   <div className="">
                     <h1 className="text-2xl mt-8">Known for</h1>
-                    <div className="relative w-full mt-5">
+                    <div className="relative w-full mt-5 mb-20">
                       <Swiper
                       modules={[Virtual, Navigation, Pagination]}
                       pagination={{ clickable: true, el: ".swiper-pagination" }}
@@ -220,7 +219,7 @@ function PeopleDetail() {
           <div className="info p-4 text-[#d1d1d1]">
             <div className="flex justify-between items-center">
               <h1 className="text-2xl">
-                {data.details.title || data.details.original_name}
+                {data.details.name || "no info"}
               </h1>
               {details == true ? (
                 <RiArrowUpSLine size={"20px"} onClick={toggleDetails} />
@@ -232,108 +231,39 @@ function PeopleDetail() {
               <div className="duration-200 ease-linear">
                 <div className="flex gap-4 text-gray-400 mt-2 text-xs">
                   <h3 className="">
-                    IMDb {data.details.vote_average.toFixed(1)}/10
+                   <strong>Born</strong>  {data.details.birthday == null ? "no info" : finalDate}
+                  </h3>
+                  <h3 className="flex items-center">
+                    <GrLocationPin /> {data.details.place_of_birth ? data.details.place_of_birth : "no info"}
                   </h3>
                   <h3>
-                    {data.details.seasons && data.details.seasons.length}{" "}
-                    {data.details.seasons && data.details.seasons.length === 1
-                      ? "Season"
-                      : "Seasons"}
-                  </h3>
-                  <h3>
-                    {data.details.first_air_date &&
-                      data.details.first_air_date?.slice(0, 4)}
-                    -
-                    {data.details.last_air_date
-                      ? data.details.last_air_date?.slice(0, 4)
-                      : ""}
                   </h3>
                 </div>
-                <div className="flex text-gray-400 mt-2 gap-2 text-xs">
-                  {data.details.genres.map((g, i) => (
-                    <h3 key={i}>
-                      {g.name} {i > data.details.genres.length - 2 ? " " : ","}
-                    </h3>
-                  ))}
-                </div>
+                <h3 className="text-xs mt-2 "> <strong className="text-xs text-gray-500">Known for</strong> {data.details.known_for_department ? data.details.known_for_department : "no info"}</h3>
               </div>
             )}
-          </div>
-          <div className="p-1 bg-[#171717] w-full px-4">
-            <h1 className="text-xs mx-auto block text-center">Available on</h1>
-            <div className="flex items-center w-full gap-4 p-4 overflow-x-auto">
-              {data.watchProviders &&
-                data.watchProviders.buy &&
-                data.watchProviders.buy.map((p, i) => (
-                  <div className="h-[2rem] w-[2rem] mx-auto" key={i}>
-                    {" "}
-                    <img
-                      className="h-full object-contain w-full rounded-lg "
-                      title={p.provider_name}
-                      src={`https://image.tmdb.org/t/p/original/${p.logo_path}`}
-                    />
-                  </div>
-                ))}
-              {data.watchProviders &&
-                !data.watchProviders.buy &&
-                data.watchProviders.rent &&
-                data.watchProviders.rent.map((p, i) => (
-                  <div
-                    className="h-[2rem] w-[2rem] mx-auto items-center"
-                    key={i}
-                  >
-                    {" "}
-                    <img
-                      className="h-full object-cover w-full rounded-lg "
-                      title={p.provider_name}
-                      src={`https://image.tmdb.org/t/p/original/${p.logo_path}`}
-                    />
-                  </div>
-                ))}
-              {data.watchProviders &&
-                !data.watchProviders.buy &&
-                !data.watchProviders.rent &&
-                data.watchProviders.flatrate.map((p, i) => (
-                  <div className="h-[2rem] w-[2rem] mx-auto" key={i}>
-                    {" "}
-                    <img
-                      className="h-full object-contain w-full rounded-lg "
-                      title={p.provider_name}
-                      src={`https://image.tmdb.org/t/p/original/${p.logo_path}`}
-                    />
-                  </div>
-                ))}
-              {!data.watchProviders && (
-                <h1 className="text-xs text-gray-400 text-center mx-auto">
-                  No streaming info available.
-                </h1>
-              )}
-            </div>
-          </div>
-          <div className="flex p-4 gap-6">
-            {data.credits &&
-              data.credits.cast.slice(0, 3).map((a, i) => (
-                <div key={i} className="flex flex-col">
-                  <div className=" w-[3rem] rounded-full h-[3rem]">
-                    {" "}
-                    <img
-                      className="h-full w-full object-cover rounded-full"
-                      src={`https://image.tmdb.org/t/p/original/${a.profile_path}`}
-                      alt=""
-                    />
-                  </div>
-                  <h2 className=" text-center mx-auto mt-1 text-xs w-10 text-gray-300">
-                    {a.original_name}
-                  </h2>
-                </div>
-              ))}
-          </div>
+          </div>  
           <div className="w-[100%] px-4 py-2">
-            <p className="text-sm text-[#a7a4a4]">{data.details.overview}</p>
+          <p className="text-sm text-[#a7a4a4]">
+                    {data.details.biography
+                      .split(" ")
+                      .filter((p, i) => i < 100)
+                      .join(" ")}
+                   
+                    <span className={`${bioOpen ? '' : 'hidden'}`}>
+                    {data.details.biography
+                      .split(" ")
+                      .filter((p, i) => i > 100)
+                      .join(" ")}
+                      
+                    </span>
+                    <span className={`${!bioOpen ? '' : 'hidden'}`}>...</span>
+<button onClick={toggleBio} className="text-green-400">{bioOpen ? "See less" : "Read more"}</button>{" "}
+                  </p>
           </div>
           <hr className="border-[#171717]" />
           <div className="p-2">
-            <h1 className="px-2 text-white  ">Similar Movies</h1>
+            <h1 className="px-2 text-white  ">Best works</h1>
             <div className="flex flex-wrap gap-4 p-3 justify-center">
               {data.movies.cast &&
                 data.movies.cast.length > 0 &&
@@ -379,7 +309,7 @@ function PeopleDetail() {
                   0 &&
                 data.similar.length === 0 && (
                   <h1 className="text-xs text-gray-400 text-center mx-auto">
-                    No similar movies found.
+                    No movies found for this star
                   </h1>
                 )}
             </div>
