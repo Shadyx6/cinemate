@@ -6,6 +6,7 @@ import Dropdown from "../templates/Dropdown";
 import axios from "../utils/axios";
 import Cards from "./Cards";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "./Loader";
 
 function TvSeries() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ function TvSeries() {
       </InfiniteScroll>
     </div>
   ) : (
-    <h1>Loading...</h1>
+   <Loader />
   );
 }
 

@@ -12,6 +12,7 @@ import "swiper/css/virtual";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { LiaImdb } from "react-icons/lia";
+import Loader from "./Loader";
 
 
 function TvShowDetails() {
@@ -317,7 +318,7 @@ function TvShowDetails() {
       </div>
     </>
   ) : (
-    <h1>Loading...</h1>
+   <Loader />
   );
 }
 

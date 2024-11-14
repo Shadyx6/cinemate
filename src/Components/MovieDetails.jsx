@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncGetMovie, removeMovie } from "../store/actions/movieActions";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeftLong, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeftLong, FaInstagram, FaRegCirclePlay, FaXTwitter } from "react-icons/fa6";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import NoImage from "../assets/noImage.png";
 import {Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +12,7 @@ import "swiper/css/virtual";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { LiaImdb } from "react-icons/lia";
+import Loader from "./Loader";
 
 
 function MovieDetails() {
@@ -24,19 +25,19 @@ function MovieDetails() {
     setdetails(!details);
   };
   const bigScreen = window.innerWidth >= 1024;
-console.log(window.innerWidth)
+  
+  
   const { id } = useParams();
   useEffect(() => {
     console.log(bigScreen)
     dispatch(asyncGetMovie(id));
-
     return () => {
       dispatch(removeMovie());
     };
   }, [id]);
   return data ? (
     <>
-      <div className="h-full overflow-y-auto lg:h-screen lg:overflow-hidden  bg-[#121212] w-full">
+      <div className="h-full overflow-y-auto lg:h-screen lg:overflow-hidden relative bg-[#121212] w-full">
         <div
           style={{
             background: data.details.backdrop_path
@@ -45,8 +46,12 @@ console.log(window.innerWidth)
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
           }}
-          className={`w-full select lg:h-full h-[35%] p-5 bg-red-100`}
+          className={`w-full select relative lg:h-full h-[35%] p-5 `}
         >
+          <div className="h-full w-full lg:hidden absolute top-0 left-0 flex items-center justify-center">
+       <Link className="z-[1000]" to={'trailer'} >   <FaRegCirclePlay color="#00f5d4" size={'20%'} style={{ zIndex: 999999999, margin: "auto"}} /></Link>
+          <div className="absolute h-full w-full  top-0 left-0 bg-black opacity-50"></div>
+          </div>
           <div className="flex items-center justify-between">
             <div className="">
               <FaArrowLeftLong
@@ -131,7 +136,7 @@ console.log(window.innerWidth)
               <div className="">
                 <h3 className="text-gray-400 flex gap-2 items-center">Starring :  {data.credits && data.credits.cast && data.credits.cast.slice(0,3).map((a,i) => <p className="text-gray-200" key={i}>{a.original_name}{i < 2 ? "," : ""} </p>  )} </h3>
                 <h3 className="text-gray-400 flex gap-2 items-center">Directed by :  {data.credits && data.credits.crew && data.credits.crew.slice(0,3).map((a,i) => <p className="text-gray-200" key={i}>{a.original_name}{i < 2 ? "," : ""} </p>  )} </h3>
-                <button className="px-4 py-2 bg-yellow-400 mt-8 rounded-lg">Watch Trailer</button>
+                <Link to={`trailer`} className="px-4 py-2 bg-yellow-400 mt-8 inline-block rounded-lg">Watch Trailer</Link>
                 <h1 className="text-2xl mt-4">Similar Movies</h1>
                 <div className="relative w-full mt-5">
                 <Swiper
@@ -165,6 +170,7 @@ console.log(window.innerWidth)
             </div>
           </div>
          </div>
+         <Outlet />
         </div>
        <div className="lg:hidden">
        <div className="info p-4 text-[#d1d1d1]">
@@ -292,12 +298,11 @@ console.log(window.innerWidth)
                   />
                 </Link>
               ))}
-            {!data.recommendations &&
-              data.similar &&
+            {data.similar &&
               data.similar.length > 0 &&
               data.similar.map((s, i) => (
                 <Link
-                  to={`/movie/details/${r.id}`}
+                  to={`/movie/details/${s.id}`}
                   key={i}
                   className="h-[20vh] overflow-hidden w-[47%] rounded-md"
                 >
@@ -306,7 +311,7 @@ console.log(window.innerWidth)
                     title={s.title}
                     src={
                       s.poster_path
-                        ? `https://image.tmdb.org/t/p/original/${r.poster_path}`
+                        ? `https://image.tmdb.org/t/p/original/${s.poster_path}`
                         : NoImage
                     }
                   />
@@ -321,12 +326,10 @@ console.log(window.innerWidth)
         </div>
        </div>
 
-
-
       </div>
     </>
   ) : (
-    <h1>Loading...</h1>
+    <Loader />
   );
 }
 

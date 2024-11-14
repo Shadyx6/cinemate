@@ -14,6 +14,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-cards";
 import { LiaImdb } from "react-icons/lia";
 import { GrLocationPin } from "react-icons/gr";
+import Loader from "./Loader";
 
 function PeopleDetail() {
   const dispatch = useDispatch();
@@ -318,7 +319,7 @@ function PeopleDetail() {
       </div>
     </>
   ) : (
-    <h1>Loading...</h1>
+   <Loader />
   );
 }
 

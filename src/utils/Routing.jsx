@@ -9,6 +9,7 @@ import People from '../Components/People'
 import MovieDetails from '../Components/MovieDetails'
 import TvShowDetails from '../Components/TvShowDetails'
 import PeopleDetail from '../Components/PeopleDetail'
+import Trailer from '../templates/Trailer'
 
 function Routing() {
   return (
@@ -17,7 +18,9 @@ function Routing() {
         <Route path='/trending' element={<Trending />} />
         <Route path='/popular' element={<Popular />} />
         <Route path='/movies' element={<Movies />} />
-        <Route path='/movie/details/:id' element={<MovieDetails />} />
+        <Route path='/movie/details/:id' element={<MovieDetails />} >
+          <Route path='trailer' element={<Trailer />} />
+        </Route>
         <Route path='/tv-shows' element={<TvSeries />} />
         <Route path='/tv/details/:id' element={<TvShowDetails />} />
         <Route path='/people' element={<People />} />

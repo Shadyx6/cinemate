@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Dropdown from "../templates/Dropdown";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 
 
@@ -90,7 +91,7 @@ function Home() {
          
       </div>
     </div>
-  ) : <h1>Loading....</h1>
+  ) : <Loader />
 }
 
 export default Home;
