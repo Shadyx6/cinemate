@@ -106,7 +106,7 @@ function MovieDetails() {
           </div>
           <div className="h-full text-white w-[77%] pl-4 p-2">
                 <div className="">
-                <h1 className="text-5xl">  {data.details && data.details.title || data.details.original_title || 'no info'}</h1>
+                <h1 className="text-5xl">  {data.details && data.details.title || data.details.original_name || 'no info'}</h1>
                 </div>
                 <div className="flex mt-2">
                 

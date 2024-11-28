@@ -96,14 +96,14 @@ function TvShowDetails() {
           </div>
           <div className="h-full text-white w-[77%] pl-4 p-2">
                 <div className="">
-                <h1 className="text-5xl">  {data.details && data.details.title || data.details.original_title || 'no info'}</h1>
+                <h1 className="text-5xl">  {data.details && data.details.title || data.details.original_name || 'no info'}</h1>
                 </div>
                 <div className="flex mt-2">
                 
             {<div className="">
               <div className="flex gap-4 text-gray-200 mt-2 text-sm">
                 <h3 className="">IMDb {data.details.vote_average.toFixed(1)}/10</h3>
-                <h3>{data.details.seasons.length} {data.details.seasons.length === 1 ? "Season" : "Seasons"}</h3>
+                <h3>{data.details.seasons.length} {data.details.seasons.length === 1 ? "Season" : "Seasons"} | {data.details.number_of_episodes && data.details.number_of_episodes + " Episodes"} </h3>
                 <h3>
                   {data.details.release_date || data.details.first_air_date
                     ? data.details.release_date?.slice(0, 4) ||

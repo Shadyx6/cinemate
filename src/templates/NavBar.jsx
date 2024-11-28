@@ -33,7 +33,7 @@ function NavBar({...props}) {
                 {key?.length > 0 && (<RxCross2 onClick={() => setKey("")} className='absolute right-3 text-xl' />)}
                 </div>
                 <div className=" h-auto max-h-[60vh] z-max text-[#D1D1D1] w-[50%] ml-32 rounded-lg mt-2 bg-[#222222] overflow-y-auto">
-               {list && list.length > 0 && list.map((item, i) => ( <Link key={i} className='p-5 flex gap-5 items-center mb-5 text-md'> <img className='h-20 w-30 object-cover rounded-md' src={item.backdrop_path || item.poster_path || item.profile_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path || item.poster_path || item.profile_path}` : NoImage} alt="img" />{item.title || item.original_title || item.name || item.original_name || "not found"}
+               {list && list.length > 0 && list.map((item, i) => ( <Link to={`/${item.media_type}/details/${item.id}`} key={i} className='p-5 flex gap-5 items-center mb-5 text-md'> <img className='h-20 w-30 object-cover rounded-md' src={item.backdrop_path || item.poster_path || item.profile_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path || item.poster_path || item.profile_path}` : NoImage} alt="img" />{item.title || item.original_title || item.name || item.original_name || "not found"}
                 </Link>) )}
                 </div>
             </div>
