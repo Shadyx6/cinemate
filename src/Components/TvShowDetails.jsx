@@ -223,7 +223,7 @@ function TvShowDetails() {
             {data.watchProviders &&
               !data.watchProviders.buy &&
               !data.watchProviders.rent &&
-              data.watchProviders.flatrate.map((p, i) => (
+              data.watchProviders.flatrate && data.watchProviders.flatrate.map((p, i) => (
                 <div className="h-[2rem] w-[2rem] mx-auto" key={i}>
                   {" "}
                   <img
