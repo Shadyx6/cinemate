@@ -277,7 +277,7 @@ function MovieDetails() {
         </div>
         <hr className="border-[#171717]" />
         <div className="p-2">
-          <h1 className="px-2 text-white  ">Similar Movies</h1>
+          <h1 className="px-2 text-white">Similar Movies</h1>
           <div className="flex flex-wrap gap-4 p-3 justify-center">
             {data.recommendations &&
               data.recommendations.length > 0 &&

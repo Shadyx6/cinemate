@@ -6,14 +6,14 @@ export const asyncGetPeople = (id) => async (dispatch, getState) => {
         const details = await axios.get(`/person/${id}`);
         // const recommendations = await axios.get(`/person/${id}/recommendations`);
         // const latest = await axios.get(`/person/${id}/latest`);
-        const movies = await axios.get(`/person/${id}/credits`);
+        const credits = await axios.get(`/person/${id}/combined_credits`);
         const images = await axios.get(`/person/${id}/images`);
         const taggedImages = await axios.get(`/person/${id}/tagged_images`);
         const externalIds = await axios.get(`/person/${id}/external_ids`);
         const peopleData = {
             details: details.data,
             images: images.data,
-            movies: movies.data,
+            credits: credits.data,
             externalIds: externalIds.data,
             taggedImages: taggedImages.data.results,
         }

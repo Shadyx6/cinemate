@@ -18,7 +18,7 @@ export const asyncGetTvShow = (id) => async (dispatch, getState) => {
       recommendations: recommendations.data.results,
       similar: similar.data.results,
       credits: credits.data,
-      videos: videos.data,
+      videos: videos.data.results?.filter(v => v.type === "Trailer")[0],
       watchProviders: watchProviders.data.results.US,
       externalIds: externalIds.data
     };

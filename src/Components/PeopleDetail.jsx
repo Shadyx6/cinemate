@@ -187,8 +187,8 @@ function PeopleDetail() {
                       slidesPerView={5}
                       virtual
                     >
-                      {data.movies &&
-                        data.movies.cast.map((slideContent, index) => (
+                      {data.credits &&
+                        data.credits.cast.map((slideContent, index) => (
                           <SwiperSlide
                             className="h-60 relative w-40 text-black rounded-2xl overflow-hidden"
                             key={slideContent}
@@ -266,11 +266,11 @@ function PeopleDetail() {
           <div className="p-2">
             <h1 className="px-2 text-white  ">Best works</h1>
             <div className="flex flex-wrap gap-4 p-3 justify-center">
-              {data.movies.cast &&
-                data.movies.cast.length > 0 &&
-                data.movies.cast.map((r, i) => (
+              {data.credits.cast &&
+                data.credits.cast.length > 0 &&
+                data.credits.cast.map((r, i) => (
                   <Link
-                    to={`/movie/details/${r.id}`}
+                    to={`/${r.media_type}/details/${r.id}`}
                     key={i}
                     className="h-[20vh] overflow-hidden w-[47%] rounded-md"
                   >
@@ -285,12 +285,12 @@ function PeopleDetail() {
                     />
                   </Link>
                 ))}
-              {!data.movies.cast &&
+              {!data.credits.cast &&
                 data.similar &&
                 data.similar.length > 0 &&
                 data.similar.map((s, i) => (
                   <Link
-                    to={`/movie/details/${r.id}`}
+                    to={`/${r.media_type}/details/${r.id}`}
                     key={i}
                     className="h-[20vh] overflow-hidden w-[47%] rounded-md"
                   >
@@ -305,12 +305,12 @@ function PeopleDetail() {
                     />
                   </Link>
                 ))}
-              {data.movies.cast &&
-                (<data value="" className="movies.cast"></data>).length ===
+              {data.credits.cast &&
+                (<data value="" className="credits.cast"></data>).length ===
                   0 &&
                 data.similar.length === 0 && (
                   <h1 className="text-xs text-gray-400 text-center mx-auto">
-                    No movies found for this star
+                    No credits found for this star
                   </h1>
                 )}
             </div>

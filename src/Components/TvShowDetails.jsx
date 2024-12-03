@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncGetTvShow, removeTvShow } from "../store/actions/tvShowActions";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeftLong, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeftLong, FaInstagram, FaRegCirclePlay, FaXTwitter } from "react-icons/fa6";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import NoImage from "../assets/noImage.png";
 import {Swiper, SwiperSlide } from "swiper/react";
@@ -35,7 +35,7 @@ function TvShowDetails() {
   }, [id]);
   return data ? (
    <>
-     <div className="h-full overflow-y-auto lg:h-screen lg:overflow-hidden  bg-[#121212] w-full">
+     <div className="h-full overflow-y-auto lg:h-screen lg:overflow-hidden bg-[#121212] w-full">
          <div
           style={{
             background: data.details.backdrop_path
@@ -44,8 +44,12 @@ function TvShowDetails() {
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
           }}
-          className={`w-full select lg:h-full h-[35%] p-5 bg-red-100`}
+          className={`w-full relative select lg:h-full h-[35%] p-5 bg-red-100`}
         >
+          <div className="h-full w-full lg:hidden absolute top-0 left-0 flex items-center justify-center">
+       <Link className="z-[1000]" to={'trailer'} >   <FaRegCirclePlay color="#00f5d4" size={'20%'} style={{ zIndex: 999999999, margin: "auto"}} /></Link>
+          <div className="absolute h-full w-full  top-0 left-0 bg-black opacity-50"></div>
+          </div>
           <div className="flex items-center justify-between">
             <div className="">
               <FaArrowLeftLong
@@ -126,7 +130,7 @@ function TvShowDetails() {
               <div className="">
                 <h3 className="text-gray-400 flex gap-2 items-center">Starring :{data.credits.cast.length === 0 && "no info"}    {data.credits && data.credits.cast && data.credits.cast.slice(0,3).map((a,i) => <p className="text-gray-200" key={i}>{a.original_name}{i < 2 ? "," : ""} </p>  )} </h3>
                 <h3 className="text-gray-400 flex gap-2 items-center">Directed by :  {data.credits && data.credits.crew && data.credits.crew.slice(0,3).map((a,i) => <p className="text-gray-200" key={i}>{a.original_name}{i < 2 ? "," : ""} </p>)} {data.credits.crew.length === 0 && "no info"}  </h3>
-                <button className="px-4 py-2 bg-yellow-400 mt-8 rounded-lg">Watch Trailer</button>
+                <Link to={`trailer`} className="px-4 py-2 bg-yellow-400 mt-8 inline-block rounded-lg">Watch Trailer</Link>
                 <h1 className="text-2xl mt-4">Similar Movies</h1>
                 <div className="relative w-full mt-5">
                 <Swiper
@@ -160,6 +164,7 @@ function TvShowDetails() {
             </div>
           </div>
          </div>
+        <Outlet />
         </div>
        <div className="lg:hidden">
        <div className="info p-4 text-[#d1d1d1]">
