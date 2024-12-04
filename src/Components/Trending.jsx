@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../templates/NavBar";
 import Dropdown from "../templates/Dropdown";
 import axios from "../utils/axios";
 import Cards from "./Cards";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
+import BottomNav from "../templates/BottomNav";
 
 function Trending() {
   const navigate = useNavigate();
@@ -15,7 +16,8 @@ function Trending() {
   const [day, setDay] = useState("day");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true)
-
+  const {pathname} = useLocation()
+  console.log(pathname)
   document.title = "Cinemate - Trending Section"
 
   const getTrending = async () => {
@@ -49,6 +51,10 @@ function Trending() {
   },[category, day]);
 
   return trendy.length > 0 ? (
+    <>
+     <div className="w-full h-full relative z-[10000000000] flex items-center justify-center">
+    <BottomNav />
+    </div>
     <div className=" bg-black h-full w-screen">
       <div className="flex p-4 items-center justify-between h-fit relative">
         <div className="flex w-[15%] items-center justify-center  gap-2">
@@ -76,7 +82,10 @@ function Trending() {
        <Cards data={trendy} title={category} />
       </div>
     </InfiniteScroll>
+    
     </div>
+    </>
+   
   ) : <Loader />
 }
 

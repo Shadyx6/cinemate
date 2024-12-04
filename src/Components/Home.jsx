@@ -10,8 +10,13 @@ import "swiper/css/virtual";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Dropdown from "../templates/Dropdown";
+import logo from '../assets/logo.png'
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
+import { BiSearch } from "react-icons/bi";
+import NoImage from '../assets/noImage.png'
+import { FaFire } from "react-icons/fa";
+import BottomNav from "../templates/BottomNav";
 
 
 
@@ -46,17 +51,16 @@ function Home() {
     !wallpaper && getWallpaper();
     getTrending();
   }, [category]);
-  // useEffect(() => {
-  //   const navRef = useRef(null)
-  // })
+
 
 
   return wallpaper ? (
-    <div className="h-screen w-full flex">
+   <>
+    <div className="h-screen w-full lg:flex hidden ">
       <SideBar />
       <div className="w-[75%] h-full bg-black relative flex flex-col justify-between">
         <NavBar className="wrapper h-[40%] w-full p-2 z-50 absolute" />
-        <HeroImage wallpaper={wallpaper} />
+        <HeroImage wallpaper={wallpaper} big={true} />
         {trendy && <div className='gap-2 py-4 flex-flex-col overflow-hidden pointer-events-auto h-[45%] z-50'>
        <div className="flex justify-between w-full px-6 z-[100000]">
        <h1 className="text-[#D1D1D1] mb-4">Trending</h1>
@@ -91,6 +95,51 @@ function Home() {
          
       </div>
     </div>
+    <div className="h-full bg-black w-full lg:hidden">
+      <div className="flex items-center justify-between py-2 px-2">
+        <div className="flex items-center">
+          <img className="w-8 h-8 rounded-full" src={logo} alt="" />
+          <h1 className="text-2xl">Cinemate</h1>
+        </div>
+        <div className="flex">
+          <BiSearch/>
+        </div>
+      </div>
+      <div className="">
+      <HeroImage wallpaper={wallpaper} big={false} />
+      </div>
+      <div className="px-4 mt-5">
+        <h2 className="">For You</h2>
+        <div className="flex flex-wrap gap-4 py-3 justify-center">
+            {trendy && trendy[0].map((r, i) => (
+                <Link
+                  to={`/movie/details/${r.id}`}
+                  key={i}
+                  className="h-[25vh] overflow-hidden w-[47%] rounded-md"
+                >
+                  <img
+                    className="h-full object-cover object-bottom w-full"
+                    title={r.title}
+                    src={
+                      r.poster_path
+                        ? `https://image.tmdb.org/t/p/original/${r.poster_path}`
+                        : NoImage
+                    }
+                  />
+                </Link>
+              ))}
+            {trendy.length === 0 && (
+              <h1 className="text-xs text-gray-400 text-center mx-auto">
+                No similar movies found.
+              </h1>
+            )}
+          </div>
+      </div>
+    <div className="w-full h-full relative flex items-center justify-center bg-red-200">
+    <BottomNav />
+    </div>
+    </div>
+   </>
   ) : <Loader />
 }
 
