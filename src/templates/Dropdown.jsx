@@ -10,7 +10,7 @@ const Dropdown = ({ title, options, cats }) => {
         onChange={cats}
       >
         <option disabled selected value="">
-          -- Select an option --
+          -Pick Option-
         </option>
         {options.map((option, index) => (
           <option key={index} value={option} className="text-[#D1D1D1] bg-black hover:bg-[#3D3D3D]">

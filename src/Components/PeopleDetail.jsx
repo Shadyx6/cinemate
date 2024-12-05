@@ -60,7 +60,7 @@ function PeopleDetail() {
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
           }}
-          className={`w-full select lg:h-full h-[35%] p-5 bg-red-100`}
+          className={`w-full select lg:h-full h-[45vh] p-5 bg-red-100`}
         >
           <div className="flex items-center justify-between">
             <div className="">

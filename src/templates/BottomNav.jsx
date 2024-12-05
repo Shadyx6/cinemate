@@ -21,7 +21,7 @@ function BottomNav() {
       })
     ))}, [pathname])
   return (
-    <div className="fixed bottom-6 rounded-lg w-[95%] bg-[#1F1F1F]/50 backdrop-blur-lg m-auto items-center justify-evenly overflow-visible flex h-16">
+    <div className="fixed bottom-6 lg:hidden rounded-lg w-[95%] bg-[#1F1F1F]/50 backdrop-blur-lg m-auto items-center justify-evenly overflow-visible flex h-16">
     {links && links.map((l, i) => (
       <Link to={l.path} className={`ml-4 ${l.isActive && "text-green-500"} ` } key={i}>
         {l.icon}

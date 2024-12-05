@@ -44,7 +44,7 @@ function TvShowDetails() {
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
           }}
-          className={`w-full relative select lg:h-full h-[35%] p-5 bg-red-100`}
+          className={`w-full relative select lg:h-full h-[35vh] p-5 bg-red-100`}
         >
           <div className="h-full w-full lg:hidden absolute top-0 left-0 flex items-center justify-center">
        <Link className="z-[1000]" to={'trailer'} >   <FaRegCirclePlay color="#00f5d4" size={'20%'} style={{ zIndex: 999999999, margin: "auto"}} /></Link>

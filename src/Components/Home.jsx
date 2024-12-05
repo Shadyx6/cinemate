@@ -17,10 +17,31 @@ import { BiSearch } from "react-icons/bi";
 import NoImage from '../assets/noImage.png'
 import { FaFire } from "react-icons/fa";
 import BottomNav from "../templates/BottomNav";
+import { RxCross2 } from "react-icons/rx";
+import { TiArrowMinimise } from "react-icons/ti";
+import { HiArrowLongRight } from "react-icons/hi2";
 
 
 
 function Home() {
+  const [isSearch, setIsSearch] = useState(false)
+  const [key, setKey] = useState("")
+  const [list, setList] = useState(null)
+  const getResult = async () => {
+    try {
+      if(key.length === 0) setList(null)
+      const response = await axios.get(`/search/multi?query=${key}`)
+      setList(response.data.results)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const toggleSearch = () => {
+    setIsSearch((prev) => !prev)
+  }
+  useEffect(() => { 
+   getResult()
+  })
   const [wallpaper, setWallpaper] = useState(null);
   const [trendy, setTrendy] = useState(null)
   const [category, setCategory] = useState('all')
@@ -95,15 +116,28 @@ function Home() {
          
       </div>
     </div>
+
+    {/* Mobile Version ⬇️ */}
     <div className="h-full bg-black w-full lg:hidden">
-      <div className="flex items-center justify-between py-2 px-2">
-        <div className="flex items-center">
+      <div className="flex justify-between items-center py-2 px-2">
+        <div className="flex items-center w-fit">
           <img className="w-8 h-8 rounded-full" src={logo} alt="" />
-          <h1 className="text-2xl">Cinemate</h1>
+          <h1 className={`text-2xl ${isSearch ? "hidden" : "block"} `}>Cinemate</h1>
         </div>
-        <div className="flex">
-          <BiSearch/>
+        <div className="flex w-[80%]  items-center gap-4">
+          <div className={`w-full relative ${isSearch ? "block" : "hidden"} `}>
+          <input value={key} onChange={(e)=> setKey(e.target.value)} placeholder="Search your picks..." className="w-full rounded-full bg-zinc-500  px-2" type="text" />
+          <RxCross2  onClick={() => setKey("")} className={`${key.length > 0 ? "block" : "hidden"}`} style={{position: "absolute", top: "50%", left: "93%", transform: "translate(-50%,-50%)", color: "white"}} />
+          <HiArrowLongRight  onClick={toggleSearch} className={`${key.length > 0 ? "hidden" : "block"}`} style={{position: "absolute", top: "50%", left: "93%", transform: "translate(-50%,-50%)", color: "white"}} />
+            
+          <div className=" h-auto max-h-[50vh] overflow-auto w-full absolute bg-[#222222] top-full left-0 rounded-lg mt-1 z-[100000000000]">
+          {list && list.length > 0 && list.map((item, i) => ( <Link to={`/${item.media_type}/details/${item.id}`} key={i} className='p-5 flex gap-5 items-center mb-5 text-md'> <img className='h-10 w-10 object-cover rounded-md' src={item.backdrop_path || item.poster_path || item.profile_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path || item.poster_path || item.profile_path}` : NoImage} alt="img" /> <p className="text-sm">{item.title || item.original_title || item.name || item.original_name || "not found"}</p>
+            </Link>) )}
+          </div>
+          </div>
+         
         </div>
+        <BiSearch onClick={() => setIsSearch(true)} size={"30px"}/>
       </div>
       <div className="">
       <HeroImage wallpaper={wallpaper} big={false} />

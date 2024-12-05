@@ -7,6 +7,7 @@ import axios from "../utils/axios";
 import Cards from "./Cards";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
+import BottomNav from "../templates/BottomNav";
 
 function Movies() {
   const navigate = useNavigate();
@@ -44,27 +45,36 @@ function Movies() {
   }, [category]);
 
   return movies.length > 0 ? (
-    <div className=" bg-black h-full w-screen">
+    <>
+     <div className="w-full h-full relative z-[10000000000] flex items-center justify-center">
+    <BottomNav />
+    </div>
+      <div className=" bg-black h-full w-screen overflow-x-hidden">
       <div className="flex p-4 items-center justify-between h-fit relative">
-        <div className="flex w-[15%] items-center justify-center  gap-2">
+        <div className="flex lg:w-[15%] items-center justify-center  gap-2">
           <FaArrowLeftLong
             onClick={() => navigate(-1)}
             className="hover:text-[#00F5D4]"
           />
-          <h1 className="text-3xl whitespace-nowrap">
+          <h1 className="lg:text-3xl i-mod lg:whitespace-nowrap">
             Movies <span className="text-xs">({category})</span>
           </h1>
         </div>
-        <NavBar
-          className={`w-1/2 max-h-[50%] mb-8 block ml-56 absolute z-50 pointer-events-auto text-black `}
-        />
-        <div className="flex justify-end w-fit z-40 gap-4 ">
+        <NavBar className={`lg:w-1/2 w-full i-ml max-h-[50%] ml-8 mb-8 block lg:ml-56 absolute z-50 pointer-events-auto text-black `} />
+        <div className="hidden justify-end w-fit z-40 gap-4 lg:flex">
           <Dropdown
             title={"Filter"}
             options={["top_rated", "upcoming", "popular", "now_playing"]}
             cats={(e) => setCategory(e.target.value)}
           />
         </div>
+      </div>
+      <div className="h-10 w-full flex justify-between items-end px-5 gap-2 lg:hidden z-10 relative">
+      <Dropdown
+            title={"Filter"}
+            options={["top_rated", "upcoming", "popular", "now_playing"]}
+            cats={(e) => setCategory(e.target.value)}
+          />
       </div>
       <InfiniteScroll
         dataLength={movies.length}
@@ -77,6 +87,8 @@ function Movies() {
         </div>
       </InfiniteScroll>
     </div>
+    </>
+  
   ) : (
    <Loader />
   );

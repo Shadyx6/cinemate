@@ -39,3 +39,17 @@
   font-size: 10px;
   scale: .7;
 }
+input[type="search"]::-webkit-search-cancel-button {
+  background-color: green !important; 
+  border-radius: 50%;      
+  color: white;            
+}
+
+@media only screen and (max-width: 355px) {
+.i-mod{
+  font-size: 10px;
+}
+.i-ml{
+  margin-left: 15px !important;
+}
+}
