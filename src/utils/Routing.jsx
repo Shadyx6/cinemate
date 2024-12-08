@@ -10,11 +10,13 @@ import MovieDetails from "../Components/MovieDetails";
 import TvShowDetails from "../Components/TvShowDetails";
 import PeopleDetail from "../Components/PeopleDetail";
 import Trailer from "../templates/Trailer";
+import AboutUs from "../Components/AboutUs";
 
 function Routing() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<AboutUs />} />
       <Route path="/trending" element={<Trending />} />
       <Route path="/popular" element={<Popular />} />
       <Route path="/movies" element={<Movies />} />
@@ -25,8 +27,8 @@ function Routing() {
         <Route path="trailer" element={<Trailer />} />
       </Route>
       <Route path="/tv-shows" element={<TvSeries />} />
-      <Route path="/people" element={<People />} />
-      <Route path="/people/details/:id" element={<PeopleDetail />} />
+      <Route path="/persons" element={<People />} />
+      <Route path="/person/details/:id" element={<PeopleDetail />} />
     </Routes>
   );
 }

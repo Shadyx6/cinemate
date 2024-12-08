@@ -58,7 +58,7 @@ function People() {
             className="hover:text-[#00F5D4]"
           />
           <h1 className="lg:text-3xl max-lg:w-[40%] mr-auto i-mod lg:whitespace-nowrap">
-            People
+            Artists
           </h1>
         </div>
         <NavBar className={`lg:w-1/2 w-full i-ml max-h-[50%] ml-4 mb-8 block lg:ml-56 absolute z-50 pointer-events-auto text-black `} />
@@ -72,7 +72,7 @@ function People() {
         loader={<h4>Loading...</h4>}
       >
         <div className="text-white bg-black h-full w-full">
-          <Cards data={people} title={'people'} />
+          <Cards data={people} title={'person'} />
         </div>
       </InfiniteScroll>
     </div>

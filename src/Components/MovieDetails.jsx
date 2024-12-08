@@ -46,13 +46,14 @@ function MovieDetails() {
             backgroundSize: "cover",
             backgroundPosition: "50% 50%",
           }}
-          className={`w-full select relative lg:h-full h-[35vh] p-5 `}
+          className={`w-full select relative lg:h-full h-[35vh] p-5`}
         >
           <div className="h-full w-full lg:hidden absolute top-0 left-0 flex items-center justify-center">
-       <Link className="z-[1000]" to={'trailer'} >   <FaRegCirclePlay color="#00f5d4" size={'20%'} style={{ zIndex: 999999999, margin: "auto"}} /></Link>
+       <Link className="z-[1000]" to={'trailer'} > <FaRegCirclePlay color="#00f5d4" size={'20%'} style={{ zIndex: 999999999, margin: "auto"}} /></Link>
           <div className="absolute h-full w-full  top-0 left-0 bg-black opacity-50"></div>
           </div>
-          <div className="flex items-center justify-between">
+         <div className="absolute w-full pr-10 lg:block">
+         <div className="flex items-center justify-between ">
             <div className="">
               <FaArrowLeftLong
                 onClick={() => navigate(-1)}
@@ -72,6 +73,7 @@ function MovieDetails() {
               </a>
             </div>
           </div>
+         </div>
          <div className=" hidden lg:flex h-full w-full">
          <div className="h-full w-[27%]  px-6  p-4">
             <div
@@ -84,7 +86,7 @@ function MovieDetails() {
             <div className="flex flex-wrap gap-x-6 mx-auto gap-y-4">
             {data.credits &&
             data.credits.cast.slice(0, 6).map((a, i) => (
-              <div key={i} className="flex flex-col">
+              <Link to={`/person/details/${a.id}`} key={i} className="flex flex-col">
                 <div className=" w-[3.4rem] rounded-full h-[3.4rem]">
                   {" "}
                   <img
@@ -96,7 +98,7 @@ function MovieDetails() {
                 <h2 className=" text-center mx-auto mt-1 text-xs w-10 text-gray-300">
                   {a.original_name}
                 </h2>
-              </div>
+              </Link>
             ))}
               {/* <div className="">
                 <div className="h-[15vh] w-[15vh] bg-red-500 rounded-full"></div>
@@ -172,7 +174,7 @@ function MovieDetails() {
          </div>
          <Outlet />
         </div>
-       <div className="lg:hidden">
+       <div className="lg:hidden ">
        <div className="info p-4 text-[#d1d1d1]">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl">
@@ -257,7 +259,7 @@ function MovieDetails() {
         <div className="flex p-4 gap-6">
           {data.credits &&
             data.credits.cast.slice(0, 3).map((a, i) => (
-              <div key={i} className="flex flex-col">
+              <Link to={`/person/details/${a.id}`} key={i} className="flex flex-col">
                 <div className=" w-[3rem] rounded-full h-[3rem]">
                   {" "}
                   <img
@@ -269,7 +271,7 @@ function MovieDetails() {
                 <h2 className=" text-center mx-auto mt-1 text-xs w-10 text-gray-300">
                   {a.original_name}
                 </h2>
-              </div>
+              </Link>
             ))}
         </div>
         <div className="w-[100%] px-4 py-2">
@@ -285,7 +287,7 @@ function MovieDetails() {
                 <Link
                   to={`/movie/details/${r.id}`}
                   key={i}
-                  className="h-[20vh] overflow-hidden w-[47%] rounded-md"
+                  className="h-[38vh] overflow-hidden w-[47%] rounded-md"
                 >
                   <img
                     className="h-full object-cover object-bottom w-full"
@@ -304,7 +306,7 @@ function MovieDetails() {
                 <Link
                   to={`/movie/details/${s.id}`}
                   key={i}
-                  className="h-[20vh] overflow-hidden w-[47%] rounded-md"
+                  className="h-[38vh] overflow-hidden w-[47%] rounded-md"
                 >
                   <img
                     className="h-full object-cover object-bottom w-full"

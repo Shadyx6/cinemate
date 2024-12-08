@@ -143,13 +143,16 @@ function Home() {
       <HeroImage wallpaper={wallpaper} big={false} />
       </div>
       <div className="px-4 mt-5">
-        <h2 className="">For You</h2>
+       <div className="flex justify-between items-center">
+       <h2 className="">For You</h2>
+       <Dropdown title={"Browse"} options={["tv", "movie", "all"]} cats={(e) => setCategory(e.target.value)} />
+       </div>
         <div className="flex flex-wrap gap-4 py-3 justify-center">
             {trendy && trendy[0].map((r, i) => (
                 <Link
                   to={`/movie/details/${r.id}`}
                   key={i}
-                  className="h-[25vh] overflow-hidden w-[47%] rounded-md"
+                  className="h-[40vh] overflow-hidden w-[47%] rounded-md"
                 >
                   <img
                     className="h-full object-cover object-bottom w-full"
@@ -162,7 +165,7 @@ function Home() {
                   />
                 </Link>
               ))}
-            {trendy.length === 0 && (
+            {trendy && trendy.length === 0 && (
               <h1 className="text-xs text-gray-400 text-center mx-auto">
                 No similar movies found.
               </h1>

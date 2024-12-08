@@ -66,7 +66,7 @@ function PeopleDetail() {
             <div className="">
               <FaArrowLeftLong
                 onClick={() => navigate(-1)}
-                className="hover:text-[#00F5D4]"
+                className="hover:text-[#00F5D4] "
               />
             </div>
             <div className="flex items-center  gap-4">
@@ -272,7 +272,7 @@ function PeopleDetail() {
                   <Link
                     to={`/${r.media_type}/details/${r.id}`}
                     key={i}
-                    className="h-[20vh] overflow-hidden w-[47%] rounded-md"
+                    className="h-[38vh] overflow-hidden w-[47%] rounded-md"
                   >
                     <img
                       className="h-full object-cover object-bottom w-full"
@@ -292,7 +292,7 @@ function PeopleDetail() {
                   <Link
                     to={`/${r.media_type}/details/${r.id}`}
                     key={i}
-                    className="h-[20vh] overflow-hidden w-[47%] rounded-md"
+                    className="h-[38vh] overflow-hidden w-[47%] rounded-md"
                   >
                     <img
                       className="h-full object-cover object-bottom w-full"

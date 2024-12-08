@@ -3,13 +3,13 @@ import React from 'react';
 const Dropdown = ({ title, options, cats }) => {
   return (
     <div
-    style={{zIndex: "999999999999999999999999999"}} className="relative flex gap-4  text-left">
-      <label className="text-[#D1D1D1] mb-1 block">{title}</label>
+    style={{zIndex: "999999999999999999999999999"}} className="relative flex gap-4 items-center text-left">
+      <label className="text-[#D1D1D1] text-xs lg:text-base mb-1 block">{title}</label>
       <select
-        className="w-full text-sm p-1 h-8 bg-gray-600 text-[#D1D1D1] border border-[#00F5D4] rounded-md focus:outline-none focus:border-[#00F5D4] hover:border-[#00F5D4]"
+        className="w-full text-xs lg:text-sm p-1 h-8 bg-gray-600 text-[#D1D1D1] border border-[#00F5D4] rounded-md focus:outline-none focus:border-[#00F5D4] hover:border-[#00F5D4]"
         onChange={cats}
       >
-        <option disabled selected value="">
+        <option className='text-xs' disabled selected value="">
           -Pick Option-
         </option>
         {options.map((option, index) => (

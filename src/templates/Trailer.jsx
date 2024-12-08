@@ -17,7 +17,7 @@ function Trailer() {
     <div className="absolute h-full z-[10000] flex items-center flex-col justify-center w-full top-0 left-0">
       <div className="absolute h-full w-full bg-black opacity-80 pointer-events-none"></div>
     <div className="w-full hidden lg:flex z-[100000] ml-56" >
-   <div   onClick={() => navigate(-1)} className="p-4 w-fit rounded-full border hover:text-red-600 hover:bg-[#00F5D4] border-[#00F5D4]">
+   <div   onClick={() => navigate(-1)} className="p-4 w-fit z-[10000000000000000000000000000] rounded-full border hover:text-red-600 hover:bg-[#00F5D4] border-[#00F5D4]">
    <FaArrowLeftLong 
               
               />  
