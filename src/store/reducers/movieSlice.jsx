@@ -9,7 +9,7 @@ const movieSlice = createSlice({
     initialState,
     reducers: {
         getMovie : (state, action) => {
-            console.log(state)
+         
             state.details = action.payload
         },
         removeMovie : (state, action) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Card({info, title}) {
-   console.log(info.media_type, info)
+
   // const navigate = useNavigate()
   return (
     <div >

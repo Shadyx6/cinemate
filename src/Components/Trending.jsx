@@ -17,7 +17,6 @@ function Trending() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true)
   const {pathname} = useLocation()
-  console.log(pathname)
   document.title = "Cinemate - Trending Section"
 
   const getTrending = async () => {
@@ -27,7 +26,7 @@ function Trending() {
       if(list.length > 0){
         setTrendy((prev) => [...prev, ...list]);
         setPage((page) => page + 1)
-        console.log(page, res.data)
+       
       } else{
         setHasMore(false);
       }

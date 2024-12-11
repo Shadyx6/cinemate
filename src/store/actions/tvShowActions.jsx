@@ -22,7 +22,7 @@ export const asyncGetTvShow = (id) => async (dispatch, getState) => {
       watchProviders: watchProviders.data.results.US,
       externalIds: externalIds.data
     };
-    console.log(data)
+   
     dispatch(getTvShow(data));
   } catch (error) {
     console.log(error);

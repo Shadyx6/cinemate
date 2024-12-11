@@ -20,7 +20,6 @@ function MovieDetails() {
   const [details, setdetails] = useState(false);
   const data = useSelector((state) => state.movie.details);
   const navigate = useNavigate();
-  console.log(data);
   const toggleDetails = () => {
     setdetails(!details);
   };
@@ -29,7 +28,7 @@ function MovieDetails() {
   
   const { id } = useParams();
   useEffect(() => {
-    console.log(bigScreen)
+  
     dispatch(asyncGetMovie(id));
     return () => {
       dispatch(removeMovie());

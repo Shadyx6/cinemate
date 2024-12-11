@@ -9,7 +9,7 @@ const peopleSlice = createSlice({
     initialState,
     reducers: {
         getTvShow : (state, action) => {
-            console.log(state)
+            
             state.details = action.payload
         },
         removeTvShow : (state) => {

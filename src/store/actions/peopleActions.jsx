@@ -17,7 +17,7 @@ export const asyncGetPeople = (id) => async (dispatch, getState) => {
             externalIds: externalIds.data,
             taggedImages: taggedImages.data.results,
         }
-        console.log(peopleData)
+       
         dispatch(getPeople(peopleData));
     } catch (error) {
         console.log(error)

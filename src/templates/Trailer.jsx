@@ -7,10 +7,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function Trailer() {
   const { pathname } = useLocation();
   const category = pathname.includes("movie") ? "movie" : "tv"
-  console.log(pathname, category)
+  
   const bigScreen = window.innerWidth >= 1024;
   const video = useSelector(state => state[category].details.videos)
-  console.log(video, category)
+  
   const navigate = useNavigate()
 
   return video ? (

@@ -51,7 +51,7 @@ function Home() {
       const list = res.data.results;
       const finalWall = list[Math.floor(Math.random() * 20)];
       setWallpaper(finalWall);
-      console.log(list, finalWall)
+     
     } catch (error) { 
       console.log(error);
     }
